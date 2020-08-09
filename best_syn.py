@@ -13,7 +13,7 @@ class BestSyn:
 
     def get_datamuse_syn_list(self):
         url = "https://api.datamuse.com/words?ml=" + self.word
-        response = urllib.urlopen(url)
+        response = urllib.request.urlopen(url)
         data = response.read().decode("utf-8")
         json_data = json.loads(data)
         word_list = []
@@ -37,8 +37,8 @@ class BestSyn:
             except:
                 use_nltk = False
             
-            spacy_raw_word = nlp(unicode(self.word.lower()))
-            spacy_syn_word = nlp(unicode(syn_word.lower()))
+            spacy_raw_word = nlp(self.word.lower())
+            spacy_syn_word = nlp(syn_word.lower())
 
             
             spacy_score = spacy_raw_word.similarity(spacy_syn_word)
